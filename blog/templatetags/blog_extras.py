@@ -8,7 +8,7 @@ register = template.Library()
 user_model = get_user_model()
 
 @register.filter
-def author_details(author):
+def author_details(author, user):
     if not isinstance(author, user_model):
         # return empty string as safe default
         return ""
