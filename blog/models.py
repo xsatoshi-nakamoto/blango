@@ -14,11 +14,15 @@ class Tag(models.Model):
 class Comment(models.Model):
   creator = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
   content = models.TextField()
-  post = models.ForeignKey('Post', on_delete=models.CASCADE)
   content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
-  # author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
   object_id = models.PositiveIntegerField()
+  content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
   content_object = GenericForeignKey("content_type", "object_id")
+  created_at = models.DateTimeField(auto_now_add=True)
+  modified_at = models.DateTimeField(auto_now=True)
+
+  def __str__(self):
+    return f"Comment by {self.creator} on {self.content_type}"
 
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT)
