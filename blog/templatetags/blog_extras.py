@@ -26,3 +26,12 @@ def author_details(author, user):
         suffix = ""
 
     return format_html('{}{}{}', prefix, name, suffix)
+
+@register.simple_tag
+def row():
+    return format_html('<div class="row">')
+
+
+@register.simple_tag
+def endrow():
+    return format_html("</div>")
