@@ -1,3 +1,4 @@
+{% load blog_extras %}
 {% block content %}
 <h2>{{ post.title }}</h2>
 <div class="row">
@@ -12,4 +13,9 @@
 </div>
 
 {% include "blog/post-comments.html" %}
+{% row %}
+    {% col %}
+        {% recent_posts post %}
+    {% endcol %}
+{% endrow %}
 {% endblock %}
