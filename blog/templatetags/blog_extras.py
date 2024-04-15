@@ -28,10 +28,17 @@ def author_details(author, user):
     return format_html('{}{}{}', prefix, name, suffix)
 
 @register.simple_tag
-def row():
-    return format_html('<div class="row">')
+def row(class_name=""):
+    return format_html('<div class="row {}">', class_name)
 
+@register.simple_tag
+def col(class_name=""):
+    return format_html('<div class="col {}">', class_name)
 
 @register.simple_tag
 def endrow():
+    return format_html("</div>")
+
+@register.simple_tag
+def endcol():
     return format_html("</div>")
