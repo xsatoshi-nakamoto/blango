@@ -5,10 +5,11 @@ from rest_framework.decorators import action
 from rest_framework import viewsets
 from rest_framework.exceptions import PermissionDenied
 from blog.models import Post, Tag, User
-
+from .serializers import PostSerializer, TagSerializer
   
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
+    serializer_class = PostSerializer
 
     @method_decorator(cache_page(300))
     @method_decorator(vary_on_headers("Authorization"))
@@ -25,15 +26,16 @@ class PostViewSet(viewsets.ModelViewSet):
     def list(self, *args, **kwargs):
         return super(PostViewSet, self).list(*args, **kwargs)
 
-class UserDetail(viewsets.ModelViewSet):
-    queryset = User.objects.all()
-    # serializer_class = UserSerializer
-    @method_decorator(cache_page(300))
-    def get(self, *args, **kwargs):
-        return super(UserDetail, self).get(*args, *kwargs)
+# class UserDetail(viewsets.ModelViewSet):
+#     queryset = User.objects.all()
+#     # serializer_class = UserSerializer
+#     @method_decorator(cache_page(300))
+#     def get(self, *args, **kwargs):
+#         return super(UserDetail, self).get(*args, *kwargs)
 
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
+    serializer_class = TagSerializer
     @method_decorator(cache_page(300))
     def list(self, *args, **kwargs):
         return super(TagViewSet, self).list(*args, **kwargs)
