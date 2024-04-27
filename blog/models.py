@@ -8,7 +8,8 @@ from django.contrib.auth.models import User
 
 class Tag(models.Model):
   value = models.TextField(max_length=100)
-
+  class Meta:
+      ordering = ["value"]
   def __str__(self):
     return self.value
 
