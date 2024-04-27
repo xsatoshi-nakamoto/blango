@@ -22,7 +22,7 @@ import blango_auth.views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('blog.urls')),
-    path('api/', include('blog.api.urls')),
+    path('api/v1/', include('blog.api.urls')),
     path("accounts/", include("django.contrib.auth.urls")),
     path("accounts/profile/", blango_auth.views.profile, name="profile"),
     path("accounts/login/", blango_auth.views.profile, name="login"),

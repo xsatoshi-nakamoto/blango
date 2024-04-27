@@ -5,6 +5,12 @@ router = DefaultRouter()
 router.register("posts", api_views.PostViewSet)
 # router.register("info", api_views.UserDetail)
 router.register("tags", api_views.TagViewSet)
+
 urlpatterns = [
-  path('', include(router.urls))
+  path('', include(router.urls)),
+  path(
+    "posts/by-time/<str:period_name>/",
+    api_views.PostViewSet.as_view({"get": "list"}),
+    name="posts-by-time",
+  ),
 ]
