@@ -14,7 +14,7 @@ urlpatterns = [
     path('', views.index, name='post_list'),  # URL for listing blog posts
     path("post/<slug>/", views.post_detail, name="blog-post-detail"),
     path("ip/", views.get_ip),
-    path('', include(router.urls)),
+    path('api/', include(router.urls)),
 ]
 
 # if settings.DEBUG:
