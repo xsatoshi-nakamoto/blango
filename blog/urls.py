@@ -10,7 +10,7 @@ urlpatterns = [
     path("ip/", views.get_ip),
 ]
 
-if settings.DEBUG:
-  urlpatterns += [
-      path("__debug__/", include("debug_toolbar.urls")),
-  ]
+# if settings.DEBUG:
+#   urlpatterns += [
+#       path("__debug__/", include("debug_toolbar.urls")),
+#   ]
