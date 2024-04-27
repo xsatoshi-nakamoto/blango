@@ -190,3 +190,12 @@ PASSWORD_HASHERS = [
 INTERNAL_IPS = ["192.168.11.179",'127.0.0.1','localhost',"192.168.10.226"]
 
 DEBUG_TOOLBAR_ENABLED = True
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',  # Example: SessionAuthentication
+        'rest_framework.authentication.BasicAuthentication',    # Example: BasicAuthentication
+        # Add other authentication classes here as needed
+    ],
+    # Other DRF settings...
+}
