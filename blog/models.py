@@ -3,6 +3,7 @@ from django.conf import settings
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericRelation
+from django.contrib.auth.models import User
 # Create your models here.
 
 class Tag(models.Model):

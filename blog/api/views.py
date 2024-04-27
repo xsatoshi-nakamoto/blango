@@ -1,9 +1,10 @@
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import cache_page
 from django.views.decorators.vary import vary_on_headers, vary_on_cookie
+from rest_framework.decorators import action
 from rest_framework import viewsets
 from rest_framework.exceptions import PermissionDenied
-
+from blog.models import Post, Tag, User
 
   
 class PostViewSet(viewsets.ModelViewSet):
@@ -25,11 +26,14 @@ class PostViewSet(viewsets.ModelViewSet):
         return super(PostViewSet, self).list(*args, **kwargs)
 
 class UserDetail(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    # serializer_class = UserSerializer
     @method_decorator(cache_page(300))
     def get(self, *args, **kwargs):
         return super(UserDetail, self).get(*args, *kwargs)
 
 class TagViewSet(viewsets.ModelViewSet):
+    queryset = Tag.objects.all()
     @method_decorator(cache_page(300))
     def list(self, *args, **kwargs):
         return super(TagViewSet, self).list(*args, **kwargs)
