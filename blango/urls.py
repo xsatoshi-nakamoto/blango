@@ -18,6 +18,7 @@ from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
 import blango_auth.views
+from blog import views as blog_views
 from django.conf.urls.static import static
 
 
@@ -26,6 +27,7 @@ urlpatterns = [
     path('', include('blog.urls')),
     path('api/v1/', include('blog.api.urls')),
     path("accounts/", include("django.contrib.auth.urls")),
+    path("post-table/", blog_views.post_table, name="blog-post-table"),
     path("accounts/profile/", blango_auth.views.profile, name="profile"),
     path("accounts/login/", blango_auth.views.profile, name="login"),
     path("accounts/logout/", blango_auth.views.profile, name="logout"),
