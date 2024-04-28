@@ -30,5 +30,8 @@ urlpatterns = [
     path("accounts/login/", blango_auth.views.profile, name="login"),
     path("accounts/logout/", blango_auth.views.profile, name="logout"),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 print("AAAAAA")
 print(settings.DEBUG)

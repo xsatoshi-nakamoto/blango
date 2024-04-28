@@ -26,19 +26,6 @@ class PostSerializer(serializers.ModelSerializer):
     author = serializers.PrimaryKeyRelatedField(read_only=True)
     tags = TagSerializer(many=True, read_only=True)
     comments = CommentSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = Post
-        fields = ['id', 'author', 'created_at', 'modified_at', 'published_at', 'title', 'slug', 'summary', 'content', 'tags', 'comments']
-
-class PostDetailSerializer(PostSerializer):
-    author = serializers.PrimaryKeyRelatedField(read_only=True)
-    tags = TagSerializer(many=True, read_only=True)
-    comments = CommentSerializer(many=True, read_only=True)
-
-    class Meta:
-        model = Post
-        fields = ['id', 'author', 'created_at', 'modified_at', 'published_at', 'title', 'slug', 'summary', 'content', 'tags', 'comments']
     hero_image = VersatileImageFieldSerializer(
         sizes=[
             ("full_size", "url"),
@@ -47,3 +34,25 @@ class PostDetailSerializer(PostSerializer):
         ],
         read_only=True,
     )
+    class Meta:
+        model = Post
+        exclude = ["ppoi"]
+        # fields = ['id', 'author', 'created_at', 'modified_at', 'published_at', 'title', 'slug', 'summary', 'content', 'tags', 'comments']
+
+class PostDetailSerializer(PostSerializer):
+    author = serializers.PrimaryKeyRelatedField(read_only=True)
+    tags = TagSerializer(many=True, read_only=True)
+    comments = CommentSerializer(many=True, read_only=True)
+    hero_image = VersatileImageFieldSerializer(
+        sizes=[
+            ("full_size", "url"),
+            ("thumbnail", "thumbnail__100x100"),
+            ("square_crop", "crop__200x200"),
+        ],
+        read_only=True,
+    )
+    class Meta:
+        model = Post
+        # fields = "__all__"
+        exclude = ["ppoi"]
+        # fields = ['id', 'hero_image', 'author', 'created_at', 'modified_at', 'published_at', 'title', 'slug', 'summary', 'content', 'tags', 'comments']
