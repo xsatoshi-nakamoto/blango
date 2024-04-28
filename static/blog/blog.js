@@ -17,16 +17,16 @@ class ClickButton extends React.Component {
     else
       buttonText = 'Click Me'
 
-    return React.createElement(
-      'button',
-      {
-        className: 'btn btn-primary mt-2',
-        onClick: () => {
+    return <button
+      className="btn btn-primary mt-2"
+      onClick={
+        () => {
           this.handleClick()
         }
-      },
-      buttonText
-    )
+      }
+    >
+      {buttonText}
+    </button>
   }
 }
 
@@ -35,3 +35,4 @@ ReactDOM.render(
   React.createElement(ClickButton),
   domContainer
 )
+
